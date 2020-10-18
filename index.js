@@ -35,13 +35,13 @@ app.get('/dinosaurs', (req, res) => {
         })
     }
 
-    res.render('index.ejs', {dinosaurs: dinoData})
+    res.render('dinosaurs/index.ejs', {dinosaurs: dinoData})
 
 })
 
 //NEW DINO PAGE ROUTE
 app.get('/dinosaurs/new', (req,res) => {
-    res.render('new')
+    res.render('dinosaurs/new')
 })
 
 //DINO SHOW ROUTE//
@@ -55,7 +55,7 @@ app.get('/dinosaurs/:idx', (req, res) => {
     let dinoIndex = parseInt(req.params.idx)
 
     console.log(dinoData[dinoIndex])
-    res.render('show', {dinosaur: dinoData[dinoIndex], dinoId: dinoIndex})
+    res.render('dinosaurs/show', {dinosaur: dinoData[dinoIndex], dinoId: dinoIndex})
 })
 
 //DINO POST ROUTE//
