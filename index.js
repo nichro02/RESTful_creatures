@@ -1,3 +1,5 @@
+//NEED TO MOVE DINO EJS FILES INTO DIONSAURS FILE AND UPDATE RES.RENDERS (SHOULD LOOK LIKE PRE-HISTORIC CREATURES)
+
 const express = require('express')
 const app = express()
 
