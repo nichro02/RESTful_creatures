@@ -1,5 +1,3 @@
-//NEED TO MOVE DINO EJS FILES INTO DIONSAURS FILE AND UPDATE RES.RENDERS (SHOULD LOOK LIKE PRE-HISTORIC CREATURES)
-
 const express = require('express')
 const app = express()
 
@@ -14,10 +12,19 @@ app.use(express.urlencoded({extended: false}))
 
 const fs = require('fs')
 
+//Set up home route
 app.get('/', (req, res) => {
     res.render('home.ejs')
 })
 
+//Set up controllers
+const dinoController = require('./controllers/dinosaurs')
+const creatureController = require('./controllers/prehistoric_creatures')
+
+app.use('/dinosaurs', dinoController)
+app.use('/prehistoric_creatures', creatureController)
+
+/*
 //DINO INDEX ROUTE//
 app.get('/dinosaurs', (req, res) => {
     //take text from dinosaurs.json and store it in a variable
@@ -126,7 +133,7 @@ app.post('/prehistoric_creatures', (req, res) => {
     //redirect to GET /dinosaurs route (the index)
     res.redirect('/prehistoric_creatures')
 })
-
+*/
 app.listen(3000, () => {
     console.log('listening on port 3000')
 })
