@@ -1,0 +1,33 @@
+body {
+    background-color: aquamarine;
+}
+
+img {
+    height: 400px;
+    width: 600px;
+    margin: 0 auto;
+}
+
+h1, li {
+    text-align: center;
+}
+
+li, img {
+    display: block;
+}
+
+li {
+    font-size: 200%;
+    margin: 0 auto;
+}
+
+form {
+    text-align: center;
+}
+
+.dino::before {
+    content: "•";
+    display: inline-block;
+    width: 1em;
+    margin-left: -1em;
+}

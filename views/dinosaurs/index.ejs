@@ -4,8 +4,8 @@
     <input type='text' id='nameFilter' name='nameFilter'>
     <input type='submit'>
 </form>
-<ul>
+<ul id ="dinoIndex">
     <% dinosaurs.forEach(dinosaur => { %>
-        <li><%= dinosaur.name %> is a <%= dinosaur.type %></li>
+        <li class = "dino"><%= dinosaur.name %> is a <%= dinosaur.type %></li>
     <% }) %>
 </ul>

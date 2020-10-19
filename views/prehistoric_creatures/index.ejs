@@ -4,9 +4,9 @@
     <input type='text' id='typeFilter' name='typeFilter'>
     <input type='submit'>
 </form>
-<ul>
+<ul id = "creatureIndex">
     <% creatures.forEach(creature => { %>
-        <li><%= creature.type %></li>
+        <li class = "creature"><%= creature.type %></li>
         <img src=<%= creature.img_url %>>
     <% }) %>
 </ul>

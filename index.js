@@ -12,6 +12,8 @@ app.use(express.urlencoded({extended: false}))
 
 const fs = require('fs')
 
+app.use(express.static(__dirname + '/public'))
+
 //Set up home route
 app.get('/', (req, res) => {
     res.render('home.ejs')

@@ -2,15 +2,15 @@ const express = require('express')
 const router = express.Router()
 const fs = require('fs')
 
-//CREATURES INDEX ROUTE
+//CREATURE INDEX ROUTE//
 router.get('/', (req, res) => {
     //take text from prehistoric_creatures.json and store it in a variable
     let creatures = fs.readFileSync('./prehistoric_creatures.json')
     //convert the text into an array
     let creatureData = JSON.parse(creatures)
     //handle query string if there is one
-    console.log(req.query.nameFilter)
-    console.log(creatureData)
+    //console.log(req.query.nameFilter)
+    //console.log(creatureData)
     let typeFilter = req.query.typeFilter
     //reassign creatureData to be array of dinos whose name matches query string that has been made case insensitive
     if(typeFilter) {

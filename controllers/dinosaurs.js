@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router()
 const fs = require('fs')
 
-//INDEX ROUTE//
+//DINO INDEX ROUTE//
 router.get('/', (req, res) => {
     //take text from dinosaurs.json and store it in a variable
     let dinosaurs = fs.readFileSync('./dinosaurs.json')
@@ -10,7 +10,7 @@ router.get('/', (req, res) => {
     let dinoData = JSON.parse(dinosaurs)
 
     //handle query string if there is one
-    console.log(req.query.nameFilter)
+    //console.log(req.query.nameFilter)
     let nameFilter = req.query.nameFilter
     //reassign dinoData to be array of dinos whose name matches query string that has been made case insensitive
     if(nameFilter) {
@@ -23,12 +23,12 @@ router.get('/', (req, res) => {
 
 })
 
-//DINO PAGE ROUTE
+//DINO NEW PAGE ROUTE//
 router.get('/new', (req,res) => {
     res.render('dinosaurs/new')
 })
 
-//SHOW ROUTE//
+//DINO SHOW ROUTE//
 router.get('/:idx', (req, res) => {
     //take text from dinosaurs.json and store it in a variable
     let dinosaurs = fs.readFileSync('./dinosaurs.json')
@@ -42,7 +42,7 @@ router.get('/:idx', (req, res) => {
     res.render('dinosaurs/show', {dinosaur: dinoData[dinoIndex], dinoId: dinoIndex})
 })
 
-//POST ROUTE//
+//DINO POST ROUTE//
 router.post('/', (req, res) => {
     //take text from dinosaurs.json and store it in a variable
     let dinosaurs = fs.readFileSync('./dinosaurs.json')
