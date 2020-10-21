@@ -56,5 +56,39 @@ router.post('/', (req, res) => {
     res.redirect('/prehistoric_creatures')
 })
 
+//EDIT CREATURE ROUTE
+router.get('/edit/:idx', (req, res) => {
+    //res.send('you have hit GET EDIT route for dino')
+    let creatures = fs.readFileSync('./prehistoric_creatures.json')
+    let creatureData = JSON.parse(creatures)
+    console.log(creatureData)
+    res.render('prehistoric_creatures/edit', {creature: creatureData[req.params.idx], creatureId: req.params.idx})
+})
+router.put('/:idx', (req, res) => {
+    let creatures = fs.readFileSync('./prehistoric_creatures.json')
+    let creatureData = JSON.parse(creatures)
+    //UPDATE NAME AND TYPE FROM EDIT FORM
+    creatureData[req.params.idx].type = req.body.type
+    creatureData[req.params.idx].img_url = req.body.img_url
+    console.log('looking at: ',req.body.type)
+    console.log('Updated creature data: ', creatureData)
+    //SAVE EDITED DATA
+    fs.writeFileSync('./prehistoric_creatures.json', JSON.stringify(creatureData))
+    res.redirect('/prehistoric_creatures')
+})
+
+
+//DELETE CREATURE ROUTE
+router.delete('/:idx', (req, res) => {
+    let creatures = fs.readFileSync('./prehistoric_creatures.json')
+    let creatureData = JSON.parse(creatures)
+
+    //remove deleted dino
+    creatureData.splice(req.params.idx, 1)
+    
+    //SAVE EDITED DATA
+    fs.writeFileSync('./prehistoric_creatures.json', JSON.stringify(creatureData))
+    res.redirect('/prehistoric_creatures')
+})
 
 module.exports = router

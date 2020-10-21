@@ -5,8 +5,11 @@
     <input type='submit'>
 </form>
 <ul id = "creatureIndex">
-    <% creatures.forEach(creature => { %>
+    <% creatures.forEach((creature, i) => { %>
         <li class = "creature"><%= creature.type %></li>
         <img src=<%= creature.img_url %>>
+        <form method="POST" action="/prehistoric_creatures/<%= i %>/?_method=DELETE">
+            <input type="submit" value="Delete">
+        </form>
     <% }) %>
 </ul>

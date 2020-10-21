@@ -57,6 +57,37 @@ router.post('/', (req, res) => {
     res.redirect('/dinosaurs')
 })
 
+//EDIT DINO ROUTE
+router.get('/edit/:idx', (req, res) => {
+    //res.send('you have hit GET EDIT route for dino')
+    let dinosaurs = fs.readFileSync('./dinosaurs.json')
+    let dinoData = JSON.parse(dinosaurs)
+    res.render('dinosaurs/edit', {dino: dinoData[req.params.idx], dinoId: req.params.idx})
+})
+router.put('/:idx', (req, res) => {
+    let dinosaurs = fs.readFileSync('./dinosaurs.json')
+    let dinoData = JSON.parse(dinosaurs)
+    //UPDATE NAME AND TYPE FROM EDIT FORM
+    dinoData[req.params.idx].name = req.body.name
+    dinoData[req.params.idx].type = req.body.type
+    //console.log('Updated dino data: ', dinoData)
+    //SAVE EDITED DATA
+    fs.writeFileSync('./dinosaurs.json', JSON.stringify(dinoData))
+    res.redirect('/dinosaurs')
+})
+
+//DELETE DINO ROUTE
+router.delete('/:idx', (req, res) => {
+    let dinosaurs = fs.readFileSync('./dinosaurs.json')
+    let dinoData = JSON.parse(dinosaurs)
+
+    //remove deleted dino
+    dinoData.splice(req.params.idx, 1)
+    
+    //SAVE EDITED DATA
+    fs.writeFileSync('./dinosaurs.json', JSON.stringify(dinoData))
+    res.redirect('/dinosaurs')
+})
 
 
 module.exports = router
